@@ -1,0 +1,207 @@
+{
+  "$schema": "https://raw.githubusercontent.com/mediapress-hq/mediapress-schema/refs/heads/main/fields/config-schema.json",
+  "fields": [
+    {
+      "name": "headline",
+      "type": "text",
+      "label": "Headline",
+      "description": "Primary post headline that is displayed at the top of the post. The headline is used as the title displayed on the WordPress post list",
+      "source": {
+        "type": "attribute",
+        "key": "post_title",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "short_headline",
+      "type": "text",
+      "label": "Short Headline",
+      "description": "A shorter alternative headline that could be displayed on other templates around the site such as the homepage, archive or sidebar",
+      "source": {
+        "type": "postMeta",
+        "key": "short_headline",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "standfirst",
+      "type": "text",
+      "label": "Standfirst",
+      "description": "A brief introductory summary of the article, typically appearing immediately after the headline",
+      "source": {
+        "type": "postMeta",
+        "key": "standfirst",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "excerpt",
+      "type": "textarea",
+      "label": "Excerpt",
+      "description": "A summary of the article typically displayed alongside the headline/short headline on a post list or archive, if different to the standfirst",
+      "source": {
+        "type": "attribute",
+        "key": "post_excerpt",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "seo_headline",
+      "type": "text",
+      "label": "SEO Headline",
+      "description": "The version of the headline that is displayed on search engine results pages. May be more keyword-focused than than a headline.",
+      "source": {
+        "type": "postMeta",
+        "key": "seo_headline",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "seo_description",
+      "type": "textarea",
+      "label": "SEO Description",
+      "description": "A summary of the article that is displayed on search engine results pages. May be more keyword-focused than standfirst or excerpt.",
+      "source": {
+        "type": "postMeta",
+        "key": "seo_description",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "social_image",
+      "type": "image",
+      "label": "Social Share Image",
+      "description": "Custom image field to select an image for Social sites, if different to the featured image.",
+      "source": {
+        "type": "postMeta",
+        "key": "social_image",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "social_headline",
+      "type": "text",
+      "label": "Social Headline",
+      "description": "The version of the headline that is displayed on social channels.",
+      "source": {
+        "type": "postMeta",
+        "key": "social_headline",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "social_description",
+      "type": "textarea",
+      "label": "Social Description",
+      "description": "A summary of the article that is displayed on social channels.",
+      "source": {
+        "type": "postMeta",
+        "key": "social_description",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "flag",
+      "type": "checkbox",
+      "label": "Label/Flag",
+      "description": "List of terms that typically appear above a headline to help classify the content. Examples: New, Breaking, Updated, Feature, Exclusive, Sponsored",
+      "source": {
+        "type": "postMeta",
+        "key": "flag",
+        "registerFor": ["post"]
+      },
+      "options": [
+        {
+          "label": "New",
+          "value": "new"
+        },
+        {
+          "label": "Breaking",
+          "value": "breaking"
+        },
+        {
+          "label": "Updated",
+          "value": "updated"
+        },
+        {
+          "label": "Feature",
+          "value": "feature"
+        },
+        {
+          "label": "Exclusive",
+          "value": "exclusive"
+        },
+        {
+          "label": "Sponsored",
+          "value": "sponsored"
+        }
+      ]
+    },
+    {
+      "name": "category",
+      "type": "checkbox",
+      "label": "Category",
+      "description": "Used when selecting one or more options (eg. Categories)",
+      "source": {
+        "type": "taxonomy",
+        "key": "category",
+        "registerFor": ["post"]
+      }
+    },
+    {
+      "name": "tags",
+      "type": "tag",
+      "label": "Tags",
+      "description": "Input field from which you get a list of suggestions (autocomplete) from which you select values.",
+      "source": {
+        "type": "taxonomy",
+        "key": "post_tag",
+        "registerFor": ["post"]
+      }
+    }
+  ],
+  "fieldGroups": [
+    {
+      "name": "titles",
+      "label": "Titles",
+      "fields": ["headline", "short_headline", "standfirst", "excerpt"],
+      "context": {
+        "type": "postType",
+        "key": ["post"]
+      }
+    },
+    {
+      "name": "seo",
+      "label": "SEO",
+      "fields": [
+        "seo_headline",
+        "seo_description",
+        "social_image",
+        "social_headline",
+        "social_description"
+      ],
+      "context": {
+        "type": "postType",
+        "key": ["post"]
+      }
+    },
+    {
+      "name": "status",
+      "label": "Status",
+      "fields": ["flag"],
+      "context": {
+        "type": "postType",
+        "key": ["post"]
+      }
+    },
+    {
+      "name": "taxonomies",
+      "label": "Taxonomies",
+      "fields": ["category", "tags"],
+      "context": {
+        "type": "postType",
+        "key": ["post"]
+      }
+    }
+  ]
+}

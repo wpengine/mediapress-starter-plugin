@@ -1,0 +1,187 @@
+{
+  "$schema": "https://raw.githubusercontent.com/mediapress-hq/mediapress-schema/refs/heads/main/checklist/config-schema.json",
+  "items": [
+    {
+      "name": "has_5_character_title",
+      "type": "blocking",
+      "check": {
+        "type": "min",
+        "min": 5,
+        "sourceKey": "title"
+      },
+      "messages": {
+        "pass": "Has a title longer than 5 characters",
+        "fail": "Must have a title longer than 5 characters"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_short_headline",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.short_headline"
+      },
+      "messages": {
+        "pass": "Has a short headline",
+        "fail": "Short Headline is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_standfirst",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.standfirst"
+      },
+      "messages": {
+        "pass": "Has a Standfirst",
+        "fail": "Standfirst is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_excerpt",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "excerpt"
+      },
+      "messages": {
+        "pass": "Has an Excerpt",
+        "fail": "Excerpt is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_seo_headline",
+      "type": "blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.seo_headline"
+      },
+      "messages": {
+        "pass": "Has an SEO Headline",
+        "fail": "SEO Headline is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "seo_headline_length",
+      "type": "non_blocking",
+      "check": {
+        "type": "range",
+        "min": 50,
+        "max": 70,
+        "sourceKey": "meta.seo_headline"
+      },
+      "messages": {
+        "pass": "SEO Headline is between 50-70 characters",
+        "fail": "SEO Headline should be between 50-70 characters"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_seo_description",
+      "type": "blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.seo_description"
+      },
+      "messages": {
+        "pass": "Has an SEO Description",
+        "fail": "SEO Description is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "seo_description_length",
+      "type": "non_blocking",
+      "check": {
+        "type": "range",
+        "min": 155,
+        "max": 160,
+        "sourceKey": "meta.seo_description"
+      },
+      "messages": {
+        "pass": "SEO Description is between 155-160 characters",
+        "fail": "SEO Description should be between 155-160 characters"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "social_share_image",
+      "type": "info",
+      "messages": {
+        "info": "Is there a Social Share Image?"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_social_headline",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.social_headline"
+      },
+      "messages": {
+        "pass": "Has a Social Headline",
+        "fail": "Social Headline is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_social_description",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.social_description"
+      },
+      "messages": {
+        "pass": "Has a Social Description",
+        "fail": "Social Description is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_flag",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "meta.flag"
+      },
+      "messages": {
+        "pass": "Has Label/Flag",
+        "fail": "Label/Flag is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_category",
+      "type": "blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "categories"
+      },
+      "messages": {
+        "pass": "Has Category",
+        "fail": "Category is missing"
+      },
+      "postTypes": ["post"]
+    },
+    {
+      "name": "has_tags",
+      "type": "non_blocking",
+      "check": {
+        "type": "exists",
+        "sourceKey": "tags"
+      },
+      "messages": {
+        "pass": "Has Tags",
+        "fail": "Tags are missing"
+      },
+      "postTypes": ["post"]
+    }
+  ]
+}
