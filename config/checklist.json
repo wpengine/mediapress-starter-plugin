@@ -1,22 +1,23 @@
 {
-  "$schema": "https://raw.githubusercontent.com/mediapress-hq/mediapress-schema/refs/heads/main/checklist/config-schema.json",
+  "$schema": "https://github.com/bigbite/mediapress/packages/checklist/config-schema.json",
   "items": [
     {
-      "name": "has_5_character_title",
+      "name": "has_headline",
+      "title": "Has a headline",
       "type": "blocking",
       "check": {
-        "type": "min",
-        "min": 5,
+        "type": "exists",
         "sourceKey": "title"
       },
       "messages": {
-        "pass": "Has a title longer than 5 characters",
-        "fail": "Must have a title longer than 5 characters"
+        "pass": "Has a Headline",
+        "fail": "Headline is missing"
       },
       "postTypes": ["post"]
     },
     {
       "name": "has_short_headline",
+      "title": "Has a short headline",
       "type": "non_blocking",
       "check": {
         "type": "exists",
@@ -30,6 +31,7 @@
     },
     {
       "name": "has_standfirst",
+      "title": "Has a standfirst",
       "type": "non_blocking",
       "check": {
         "type": "exists",
@@ -43,6 +45,7 @@
     },
     {
       "name": "has_excerpt",
+      "title": "Has an excerpt",
       "type": "non_blocking",
       "check": {
         "type": "exists",
@@ -56,6 +59,7 @@
     },
     {
       "name": "has_seo_headline",
+      "title": "Has SEO Headline",
       "type": "blocking",
       "check": {
         "type": "exists",
@@ -69,6 +73,7 @@
     },
     {
       "name": "seo_headline_length",
+      "title": "SEO Headline has between 50-70 characters",
       "type": "non_blocking",
       "check": {
         "type": "range",
@@ -84,6 +89,7 @@
     },
     {
       "name": "has_seo_description",
+      "title": "Has SEO Description",
       "type": "blocking",
       "check": {
         "type": "exists",
@@ -97,6 +103,7 @@
     },
     {
       "name": "seo_description_length",
+      "title": "SEO Description has between 155-160 characters",
       "type": "non_blocking",
       "check": {
         "type": "range",
@@ -111,77 +118,21 @@
       "postTypes": ["post"]
     },
     {
-      "name": "social_share_image",
-      "type": "info",
-      "messages": {
-        "info": "Is there a Social Share Image?"
-      },
+      "name": "has_approved_review",
+      "type": "custom",
       "postTypes": ["post"]
+    }
+  ],
+  "groups": [
+    {
+      "name": "content",
+      "title": "Content Checks",
+      "items": ["has_headline", "has_short_headline", "has_standfirst", "has_excerpt"]
     },
     {
-      "name": "has_social_headline",
-      "type": "non_blocking",
-      "check": {
-        "type": "exists",
-        "sourceKey": "meta.social_headline"
-      },
-      "messages": {
-        "pass": "Has a Social Headline",
-        "fail": "Social Headline is missing"
-      },
-      "postTypes": ["post"]
-    },
-    {
-      "name": "has_social_description",
-      "type": "non_blocking",
-      "check": {
-        "type": "exists",
-        "sourceKey": "meta.social_description"
-      },
-      "messages": {
-        "pass": "Has a Social Description",
-        "fail": "Social Description is missing"
-      },
-      "postTypes": ["post"]
-    },
-    {
-      "name": "has_flag",
-      "type": "non_blocking",
-      "check": {
-        "type": "exists",
-        "sourceKey": "meta.flag"
-      },
-      "messages": {
-        "pass": "Has Label/Flag",
-        "fail": "Label/Flag is missing"
-      },
-      "postTypes": ["post"]
-    },
-    {
-      "name": "has_category",
-      "type": "blocking",
-      "check": {
-        "type": "exists",
-        "sourceKey": "categories"
-      },
-      "messages": {
-        "pass": "Has Category",
-        "fail": "Category is missing"
-      },
-      "postTypes": ["post"]
-    },
-    {
-      "name": "has_tags",
-      "type": "non_blocking",
-      "check": {
-        "type": "exists",
-        "sourceKey": "tags"
-      },
-      "messages": {
-        "pass": "Has Tags",
-        "fail": "Tags are missing"
-      },
-      "postTypes": ["post"]
+      "name": "seo",
+      "title": "SEO Checks",
+      "items": ["has_seo_headline", "seo_headline_length", "has_seo_description", "seo_description_length"]
     }
   ]
 }
