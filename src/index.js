@@ -3,6 +3,7 @@ import { addAction, addFilter } from "@wordpress/hooks";
 import { select, resolveSelect, dispatch } from "@wordpress/data";
 import { store as editorStore } from "@wordpress/editor";
 import { store as coreStore } from "@wordpress/core-data";
+    console.log('jere');
 
 const TAXONOMY_SLUG = 'workflow_status';
 const COMMENT_TYPE = 'mediapress_review';
@@ -67,7 +68,7 @@ addFilter('mediaPress.checklist.item', 'mediaPress/starterPlugin/checkApprovedRe
  * @param {Object} review The review comment object.
  */
 async function updateWorkflowStatusAfterReview(review) {
-    const reviewStatus = review.meta.review_status;
+    const reviewStatus = review.meta.mediapress_reviews_status;
 
     if (reviewStatus === 'rejected') {
         await setWorkflowStatusBySlug('requires-changes');
@@ -89,7 +90,7 @@ async function updateWorkflowStatusAfterReview(review) {
 
     // Check if all top-level reviews are approved.
     const allApproved = reviews.every(
-        (r) => r.meta.latest_review_status === 'approved'
+        (r) => r.mediapress_reviews_status === 'approved'
     );
 
     if (allApproved) {
