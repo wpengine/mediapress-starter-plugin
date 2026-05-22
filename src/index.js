@@ -18,13 +18,10 @@ domReady(() => {
  * one has an 'approved' review status.
  */
 addFilter('mediaPress.checklist.item', 'mediaPress/starterPlugin/checkApprovedReview', (item) => {
-    console.log(item);
-
     if (item.name !== 'has_approved_review') {
         return item;
     }
     
-    console.log('here');
     const postId = select(editorStore).getCurrentPostId();
     const reviews = select(coreStore).getEntityRecords('root', 'comment', {
         post: postId,
@@ -43,7 +40,7 @@ addFilter('mediaPress.checklist.item', 'mediaPress/starterPlugin/checkApprovedRe
     }
 
     const approvedReviews = reviews.filter(
-        (r) => r.meta.latest_review_status === 'approved'
+        (r) => r.mediapress_reviews_last_updated === 'approved'
     );
 
     if (approvedReviews.length === 0) {

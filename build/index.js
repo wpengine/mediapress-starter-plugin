@@ -161,11 +161,9 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
  * one has an 'approved' review status.
  */
 (0,_wordpress_hooks__WEBPACK_IMPORTED_MODULE_1__.addFilter)('mediaPress.checklist.item', 'mediaPress/starterPlugin/checkApprovedReview', item => {
-  console.log(item);
   if (item.name !== 'has_approved_review') {
     return item;
   }
-  console.log('here');
   const postId = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.select)(_wordpress_editor__WEBPACK_IMPORTED_MODULE_3__.store).getCurrentPostId();
   const reviews = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.select)(_wordpress_core_data__WEBPACK_IMPORTED_MODULE_4__.store).getEntityRecords('root', 'comment', {
     post: postId,
@@ -182,7 +180,7 @@ _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
       message: 'Checking for approved reviews…'
     };
   }
-  const approvedReviews = reviews.filter(r => r.meta.latest_review_status === 'approved');
+  const approvedReviews = reviews.filter(r => r.mediapress_reviews_last_updated === 'approved');
   if (approvedReviews.length === 0) {
     return {
       ...item,
