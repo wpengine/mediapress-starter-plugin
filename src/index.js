@@ -41,7 +41,7 @@ addFilter('mediaPress.checklist.item', 'mediaPress/starterPlugin/checkApprovedRe
     }
 
     const approvedReviews = reviews.filter(
-        (r) => r.mediapress_reviews_last_updated === 'approved'
+        (r) => r.mediapress_reviews_status === 'approved'
     );
 
     if (approvedReviews.length === 0) {
